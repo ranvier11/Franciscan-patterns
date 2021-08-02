@@ -1,5 +1,7 @@
 <template>
-    <button @click="onClick(text, dataIsActive)" :class="{ active: dataIsActive }">{{ text }}</button>
+    <v-btn
+  elevation="6"
+  small @click="onClick(text, dataIsActive)" :class="{ active: dataIsActive }">{{ text }}</v-btn>
 </template>
 
 <script>

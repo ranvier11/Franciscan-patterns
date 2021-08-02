@@ -13,6 +13,7 @@
 <script>
 import Tag from './components/tag.vue'
 import Patterns from './components/patterns.vue'
+import json from '../utilities/data.json'
 
 export default {
   name: 'App',
@@ -21,32 +22,35 @@ export default {
     Patterns,
   },
   data: function() {
-            const patternsArray = [
-                {
-                name: '01',
-                tags: {'flower' : true, 'leaf' : true},
-                visible: true,
-                }, {
-                name: '02',
-                tags: {'flower' : true},
-                visible: true,
-                }, {
-                name: '03',
-                tags: {'leaf' : true, 'pattern' : true},
-                visible: true,
-                }
-                ];
+          
+            // const patternsArray = [
+            //     {
+            //     name: '01',
+            //     tags: {'flower' : true, 'leaf' : true},
+            //     visible: true,
+            //     }, {
+            //     name: '02',
+            //     tags: {'flower' : true},
+            //     visible: true,
+            //     }, {
+            //     name: '03',
+            //     tags: {'leaf' : true, 'pattern' : true},
+            //     visible: true,
+            //     }
+            //     ];
             var tags = ['flower', 'spaghetti', 'leaf', 'pattern', 'heart'];
             let tagsOff = [];
             return {
-                patterns: patternsArray,
+                //patterns: patternsArray,
                 path: './assets/patterns/',
                 tags,
                 tagsOff,
+                patterns: json,
             }
   },
   methods: {
     fillTagsOff (tag) {
+      //console.log(this.patterns);
       let index = this.tagsOff.indexOf(tag[0]);
       if (tag[1] === false && index === -1){
         this.tagsOff.push(tag[0]);
@@ -60,21 +64,25 @@ export default {
             this.pattern.tags[this.key] = tag[1];
           }
         }
+      // this.patterns.forEach((pattern) => {
+      //   pattern.tags.forEach((patternTag) => {
+      //     console.log(patternTag, tag);
+          
+      //   });
+      // });
         //set visibility for pattern
-        for (this.value of Object.values(this.pattern.tags)) {
-          //console.log(this.value);
-          if(this.value === true) {
-          this.pattern.visible = true;
-        } else {
+        if(!Object.values(this.pattern.tags).includes(true)) {
+          console.log(Object.values(this.pattern.tags));
           this.pattern.visible = false;
-        }
+        } else {
+          this.pattern.visible = true;
         }
       }
-      console.log (this.pattern.visible);
+      
       
     
       
-    },
+  },
     // updatePatterns () {
     //   if (this.tagsOff >0 ) {
     //     for (const value in this.patterns) {
@@ -82,8 +90,10 @@ export default {
     //     }
     //   }
     // }
+  
+ 
   },
-  }
+}
 
 </script>
 
