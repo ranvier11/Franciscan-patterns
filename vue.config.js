@@ -1,10 +1,6 @@
 module.exports = {
     configureWebpack: {
-        output: {
-            publicPath: '/assets/'
-        }
-    },
-    module: {
+        module: {
         rules: [
           {
             test: /\.s(c|a)ss$/,
@@ -30,4 +26,5 @@ module.exports = {
           },
         ],
       }
+    },
 }

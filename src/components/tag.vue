@@ -1,7 +1,7 @@
 <template>
     <v-btn
-  elevation="6"
-  small @click="onClick(text, dataIsActive)" :class="{ active: dataIsActive }">{{ text }}</v-btn>
+  elevation="1"
+  small @click="onClick(text, dataIsActive)" :class="{ disabled: dataIsActive }" :plain="dataIsActive" :outlined="dataIsActive">{{ text }}</v-btn>
 </template>
 
 <script>
@@ -10,6 +10,7 @@ export default {
         props: {
             text: String,
             isActive: Boolean,
+            //isDisabled: Boolean,
         },
         data: function () {
             return {
@@ -27,6 +28,8 @@ export default {
                 }
             }
         },
+        computed: {
+        }
     }
 </script>
 

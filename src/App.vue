@@ -1,18 +1,36 @@
 <template>
-  <div class="container">
-    <div>
+<v-app>
+  <div>
+    <section id="title">
       
-    <Tag v-for="tag in tags" :key="tag.index" :text="tag"  @updateTags="fillTagsOff($event)"/>
-    </div>
-    <div>
-    <Patterns v-for="pattern in patterns" :key="pattern.name" :name="pattern.name" :class="{pattern: !pattern.visible}"/>
-    </div>
+        <Title />
+     
+    </section>
+    <v-main>
+    <section id="tags">
+      <div class="v-sheet v-sheet--outlined theme--light">
+        <Tag v-for="tag in tags" :key="tag.index" :text="tag" @updateTags="fillTagsOff($event)" />
+      </div>
+    </section>
+    <v-divider></v-divider>
+    <section id="patterns">
+      <div class="row">
+        <Patterns v-for="pattern in patterns" :key="pattern.name" :name="pattern.name"
+          :class="{pattern: !pattern.visible}" />
+      </div>
+    </section>
+    </v-main>
+    <Footer/>
   </div>
+  
+  </v-app>
 </template>
 
 <script>
 import Tag from './components/tag.vue'
 import Patterns from './components/patterns.vue'
+import Title from './components/title.vue'
+import Footer from './components/footer.vue'
 import json from '../utilities/data.json'
 
 export default {
@@ -20,6 +38,8 @@ export default {
   components: {
     Tag,
     Patterns,
+    Title,
+    Footer,
   },
   data: function() {
           
@@ -50,13 +70,13 @@ export default {
   },
   methods: {
     fillTagsOff (tag) {
-      //console.log(this.patterns);
       let index = this.tagsOff.indexOf(tag[0]);
       if (tag[1] === false && index === -1){
         this.tagsOff.push(tag[0]);
       } else if (tag[1] === true && index >= 0){
         this.tagsOff.splice(index, 1);
       }
+      
       // set flag for tags in patterns array
       for (this.pattern of this.patterns){
         for([this.key, this.value] of Object.entries(this.pattern.tags)) {
@@ -64,12 +84,7 @@ export default {
             this.pattern.tags[this.key] = tag[1];
           }
         }
-      // this.patterns.forEach((pattern) => {
-      //   pattern.tags.forEach((patternTag) => {
-      //     console.log(patternTag, tag);
-          
-      //   });
-      // });
+      
         //set visibility for pattern
         if(!Object.values(this.pattern.tags).includes(true)) {
           console.log(Object.values(this.pattern.tags));
@@ -77,12 +92,11 @@ export default {
         } else {
           this.pattern.visible = true;
         }
-      }
-      
-      
-    
-      
+      }  
   },
+  // fillTagsArray (json) {
+
+  // }
     // updatePatterns () {
     //   if (this.tagsOff >0 ) {
     //     for (const value in this.patterns) {
@@ -108,5 +122,8 @@ export default {
 }
 .pattern {
   display: none;
+}
+#tags {
+  padding-top: 1em;
 }
 </style>

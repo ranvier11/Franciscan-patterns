@@ -1,5 +1,11 @@
 <template>
-    <img :src="'/assets/' + name + '.svg'">
+    <!--<img :src="'/assets/' + name + '.svg'">-->
+   
+    <v-card class="mx-auto my-12" elevation="2">
+        <v-img height="100" :src="'/assets/' + name + '.svg'">
+        </v-img>
+  </v-card>
+ 
 </template>
 
 <script>
@@ -45,5 +51,7 @@ export default {
 </script>
 
 <style scoped>
-
+v-card {
+    padding: 20px;
+}
 </style>

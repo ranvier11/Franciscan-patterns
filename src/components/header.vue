@@ -1,8 +1,8 @@
 <template>
-    <header>
+    <div>
         
         <Tag v-for="tag in tags" :key="tag.index" :text="tag"/>
-    </header>
+    </div>
 </template>
 
 <script>
