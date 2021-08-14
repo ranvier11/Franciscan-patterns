@@ -2,23 +2,14 @@
     {
         "name": "01",
         "tags": {
-            "flower": true
+            "heart": true
         },
         "visible": true
     },
     {
         "name": "02",
         "tags": {
-            "heart": true,
             "leaf": true
-        },
-        "visible": true
-    },
-    {
-        "name": "03",
-        "tags": {
-            "leaf": true,
-            "flower": true
         },
         "visible": true
     }
